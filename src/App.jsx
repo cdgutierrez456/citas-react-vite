@@ -1,8 +1,14 @@
+import Header from "./components/Header";
+import Form from "./components/Form";
+import ListadoPacientes from "./components/ListadoPacientes";
+
 function App() {
   return (
-    <div className="App">
-      <h1>Hola mundo con vite</h1>
-    </div>
+    <>
+      <Header />
+      <Form />
+      <ListadoPacientes />
+    </>
   );
 }
 
