@@ -1,7 +1,9 @@
 export default function Header() {
   return (
     <>
-      <h1>Desde header</h1>
+      <header>
+        <h1>Desde header</h1>
+      </header>
     </>
   );
 }
