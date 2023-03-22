@@ -13,10 +13,6 @@ const ListadoPacientes = () => {
         </span>
       </p>
       <Paciente />
-      <Paciente />
-      <Paciente />
-      <Paciente />
-      <Paciente />
     </div>
   );
 };

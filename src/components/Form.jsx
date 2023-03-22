@@ -1,8 +1,21 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
 const Form = () => {
+  // Es recomendable declarar los state en orden de uso para que el react
+  // developers tools no exista confusiones de variables
+  const [name, setName] = useState("");
+  const [owner, setOwner] = useState("");
+  const [email, setEmail] = useState("");
+  const [date, setDate] = useState("");
+  const [symptoms, setSymptoms] = useState("");
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Send form");
+  // };
+
   return (
-    <div className="md:w-1/2 lg:w-2/5">
+    <div className="md:w-1/2 lg:w-2/5 mx-5">
       <h2 className="font-black text-3xl text-center">Seguimiento Pacientes</h2>
       <p className="text-lg mt-5 text-center mb-10">
         Añade Pacientes y {""}
@@ -21,6 +34,8 @@ const Form = () => {
             type="text"
             placeholder="Nombre de la mascota"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div className="mb-5">
@@ -35,6 +50,8 @@ const Form = () => {
             type="text"
             placeholder="Nombre del propietario"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+            value={owner}
+            onChange={(e) => setOwner(e.target.value)}
           />
         </div>
         <div className="mb-5">
@@ -49,6 +66,8 @@ const Form = () => {
             type="email"
             placeholder="E-mail del propietario"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="mb-5">
@@ -62,6 +81,8 @@ const Form = () => {
             id="alta"
             type="date"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
           />
         </div>
         <div className="mb-5">
@@ -75,6 +96,8 @@ const Form = () => {
             id="sintomas"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             placeholder="Describe los sintomas"
+            value={symptoms}
+            onChange={(e) => setSymptoms(e.target.value)}
           />
         </div>
 
