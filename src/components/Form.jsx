@@ -9,10 +9,18 @@ const Form = () => {
   const [date, setDate] = useState("");
   const [symptoms, setSymptoms] = useState("");
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log("Send form");
-  // };
+  const [error, setError] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validacion del formulario
+    if ([name, owner, email, date, symptoms].includes("")) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  };
 
   return (
     <div className="md:w-1/2 lg:w-2/5 mx-5">
@@ -21,7 +29,15 @@ const Form = () => {
         Añade Pacientes y {""}
         <span className="text-indigo-600 font-bold">Administralos</span>
       </p>
-      <form className="bg-white shadow-md rounded-lg py-10 px-5 mb-10">
+      <form
+        className="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
+        onSubmit={handleSubmit}
+      >
+        {error && (
+          <div className="bg-red-800 text-white text-center p-3 uppercase font-bold mb-3 rounded-md">
+            <p>Informacion incompleta</p>
+          </div>
+        )}
         <div className="mb-5">
           <label
             htmlFor="mascota"
