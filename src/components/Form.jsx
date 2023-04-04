@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const Form = () => {
+const Form = ({ patients, setPatients }) => {
   // Es recomendable declarar los state en orden de uso para que el react
   // developers tools no exista confusiones de variables
   const [name, setName] = useState("");
@@ -17,9 +17,25 @@ const Form = () => {
     // Validacion del formulario
     if ([name, owner, email, date, symptoms].includes("")) {
       setError(true);
-    } else {
-      setError(false);
+      return;
     }
+    setError(false);
+    // Objeto de paciente
+    const objPatient = {
+      name,
+      owner,
+      email,
+      date,
+      symptoms,
+    };
+    setPatients([...patients, objPatient]);
+
+    // Reiniciando los valores del formulario
+    setName("");
+    setOwner("");
+    setEmail("");
+    setDate("");
+    setSymptoms("");
   };
 
   return (
