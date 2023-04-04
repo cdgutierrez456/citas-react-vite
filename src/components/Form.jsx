@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Error from "./Error";
 
 const Form = ({ patients, setPatients }) => {
   // Es recomendable declarar los state en orden de uso para que el react
@@ -49,11 +50,7 @@ const Form = ({ patients, setPatients }) => {
         className="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
         onSubmit={handleSubmit}
       >
-        {error && (
-          <div className="bg-red-800 text-white text-center p-3 uppercase font-bold mb-3 rounded-md">
-            <p>Informacion incompleta</p>
-          </div>
-        )}
+        {error && <Error>Todos los campos son obligatorios</Error>}
         <div className="mb-5">
           <label
             htmlFor="mascota"
