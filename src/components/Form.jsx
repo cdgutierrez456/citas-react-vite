@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Error from "./Error";
 
-const Form = ({ patients, setPatients, patient }) => {
+const Form = ({ patients, setPatients, patient, setPatient }) => {
   // Es recomendable declarar los state en orden de uso para que el react
   // developers tools no exista confusiones de variables
   const [name, setName] = useState("");
@@ -45,9 +45,21 @@ const Form = ({ patients, setPatients, patient }) => {
       email,
       date,
       symptoms,
-      id: createId(),
     };
-    setPatients([...patients, objPatient]);
+
+    if (patient.id) {
+      objPatient.id = patient.id;
+      const updatedPatients = patients.map((patientState) => {
+        patientState.id === patient.id ? objPatient : patientState;
+      });
+
+      setPatients(updatedPatients);
+      setPatient({});
+    } else {
+      // Nuevo registro
+      objPatient.id = createId();
+      setPatients([...patients, objPatient]);
+    }
 
     // Reiniciando los valores del formulario
     setName("");
@@ -151,7 +163,7 @@ const Form = ({ patients, setPatients, patient }) => {
         <input
           type="submit"
           className="bg-indigo-600 w-full rounded p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-all"
-          value="Agregar paciente"
+          value={patient.id ? "Editar" : "Agregar paciente"}
         />
       </form>
     </div>
