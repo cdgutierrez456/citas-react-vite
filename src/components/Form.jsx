@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Error from "./Error";
 
-const Form = ({ patients, setPatients }) => {
+const Form = ({ patients, setPatients, patient }) => {
   // Es recomendable declarar los state en orden de uso para que el react
   // developers tools no exista confusiones de variables
   const [name, setName] = useState("");
@@ -11,6 +11,17 @@ const Form = ({ patients, setPatients }) => {
   const [symptoms, setSymptoms] = useState("");
 
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (Object.keys(patient).length) {
+      const { name, owner, email, date, symptoms } = patient;
+      setName(name);
+      setOwner(owner);
+      setEmail(email);
+      setDate(date);
+      setSymptoms(symptoms);
+    }
+  }, [patient]);
 
   const createId = () => {
     const random = Math.random().toString(36).substring(2);
